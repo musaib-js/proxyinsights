@@ -30,42 +30,6 @@ import {
   TableRow,
 } from "@/components/ui/table"
 
-const data: Insight[] = [
-    {
-      _id: "666bf269fc6028694445d91b",
-      job_id: "84763c2f-0ac7-4c7e-b2cf-537b3c55908e",
-      insight_details: {
-        captcha_detected: true,
-        captcha_solved: true,
-        detected_time: "2024-06-14 07:34:01",
-        error_text: null,
-        solved_time: "2024-06-14 07:34:06",
-      },
-    },
-    {
-      _id: "666e9eb202c7761937cb9d75",
-      job_id: "a2d4e4bb-adbf-412d-a435-1d8ced446a94",
-      insight_details: {
-        captcha_detected: true,
-        captcha_solved: false,
-        detected_time: "2024-06-16 08:13:38",
-        error_text: "No Audio Captcha Found",
-        solved_time: null,
-      },
-    },
-    {
-      _id: "667140eb02c7761937cb9de9",
-      job_id: "a2d4e4bb-adbf-412d-a435-1d8ced446a94",
-      insight_details: {
-        captcha_detected: true,
-        captcha_solved: false,
-        detected_time: "2024-06-18 08:10:19",
-        error_text: "No Audio Captcha Found",
-        solved_time: null,
-      },
-    },
-]
-  
 export type Insight = {
     _id: string
     job_id: string
@@ -81,10 +45,11 @@ export type Insight = {
 
   export const columns: ColumnDef<Insight>[] = [
     {
-      accessorKey: "job_id",
       header: "Job ID",
-      cell: ({ row }) => <div className="text-left">{row?.getValue("job_id")?.slice(0, 10)
-      }</div>,
+      cell: ({ row }) => (
+        <div className="text-center">{row.original.job_id?.slice(0, 8) || "N/A"
+        }</div>
+      ),
     },
     {
       accessorKey: "insight_type",

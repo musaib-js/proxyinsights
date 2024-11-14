@@ -52,7 +52,7 @@ export default function Dashboard() {
   const [data, setData] = useState(sampleData)
   const [selectedInsight, setSelectedInsight] = useState(data.insights[0]._id)
   const [pageIndex, setPageIndex] = useState(0)
-  const [pageSize, setPageSize] = useState(10)
+  const [pageSize] = useState(10)
 
   const fetchInsights = async () => {
     const body: any =  {
@@ -144,7 +144,7 @@ export default function Dashboard() {
                   label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
                 >
                   {pieChartData.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                    <Cell key={`cell-${index}-${entry}`} fill={COLORS[index % COLORS.length]} />
                   ))}
                 </Pie>
                 <Tooltip />
@@ -197,6 +197,7 @@ export default function Dashboard() {
               <ZAxis range={[100, 100]} />
               <Tooltip 
                 formatter={(value, name, props) => {
+                    console.log("first", value, name, props)
                   if (props.payload.error) {
                     return [props.payload.error, 'Error']
                   }

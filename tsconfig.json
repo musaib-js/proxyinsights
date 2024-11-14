@@ -11,6 +11,7 @@
     },
     // Your other options here
     "noEmitOnError": false,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "strict": false
   }
 }
